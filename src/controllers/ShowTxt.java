@@ -1,7 +1,9 @@
 package controllers;
 
+import java.util.List;
 import java.util.Scanner;
 
+import models.Person;
 import services.ProcesTxt;
 
 public class ShowTxt{
@@ -25,10 +27,11 @@ public class ShowTxt{
         
     }
 
-    public void ReadTxt(){
-        System.out.println("Digite la ubicacion del archivo");
-        String path=read.nextLine();
-        System.out.println(procces.ReadTxt(path));
+    public void showTxt(String path){        
+        List people = procces.ReadTxt(path);
+        for (Person person : people) {
+            System.out.println(person.);
+        }
     }
 
     public void SearchFiles(){
