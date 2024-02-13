@@ -14,7 +14,6 @@ public class ProcesTxt {
             String contenido = cont;
             File file1 = new File(ruta);
             String newcont="";
-            // Si el archivo no existe es creado
             if (!file1.exists()) {
                 file1.createNewFile();
             }else{
@@ -42,5 +41,15 @@ public class ProcesTxt {
             e.printStackTrace();
         }
         return cont;
+    }
+
+    public String [] searchFile(String location){
+        File carpeta = new File(location);
+        String[] listado = carpeta.list();
+        if (listado == null || listado.length == 0) {
+            System.out.println("No hay elementos dentro de la carpeta actual");
+            listado=new String[1];
+        }
+        return listado;
     }
 }

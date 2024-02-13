@@ -5,5 +5,6 @@ public class App {
         ShowTxt show= new ShowTxt();
         show.CreateTxt();
         show.ReadTxt();
+        show.SearchFiles();
     }
 }

@@ -30,4 +30,13 @@ public class ShowTxt{
         String path=read.nextLine();
         System.out.println(procces.ReadTxt(path));
     }
+
+    public void SearchFiles(){
+        System.out.println("Digite la ubicacion del archivo");
+        String path=read.nextLine();
+        String[] list=procces.searchFile(path);
+        for(int i=0; i<list.length;i++){
+            System.out.println(list[i]);
+        }
+    }
 }
