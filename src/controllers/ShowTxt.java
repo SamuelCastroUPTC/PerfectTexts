@@ -66,4 +66,8 @@ public class ShowTxt{
         }
     }
 
+    public void shoeBytesddd(){
+        procces.twoNumbers();
+    }
+
 }

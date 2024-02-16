@@ -140,7 +140,6 @@ public class ProcesTxt {
 
     public String[] separateInformationPerson2 (String line){
         String[] cont= line.split("\\\\");
-        System.out.println(cont.length);
         return cont;
     }
 
@@ -150,12 +149,12 @@ public class ProcesTxt {
         person.setLastname(cont[1]);
         person.setName(cont[2]);
         person.setGender(cont[3].charAt(0));
-        person.setWeigth(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimal(cont[4]),16)));
-        person.setSalary(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimal(cont[5]),16)));
+        person.setWeigth(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimalInteger(cont[4]),16)));
+        person.setSalary(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimalInteger(cont[5]),16)));
         return person;
     }
 
-    public String convertDecimalaHexadecimal (String cont) throws IOException {
+    public String convertDecimalaHexadecimalInteger (String cont) throws IOException {
         ArrayList<Integer> decimal= new ArrayList<Integer>();
         for (char c : cont.toCharArray()) {
             decimal.add((int)c);
@@ -166,8 +165,22 @@ public class ProcesTxt {
     public String changeDecimalHexadecimal(ArrayList<Integer> decimal){
         String hexadecimal1="";
         for (Integer integer : decimal) {
-            hexadecimal1=hexadecimal1+integer.toHexString(integer);
+            hexadecimal1=hexadecimal1+Integer.toHexString(integer);
+            System.out.println(hexadecimal1);
         }
         return hexadecimal1;
     }
+
+    public void twoNumbers(){
+        int a=194;
+        int b=183;
+        int c=a*256;
+        c=c+b;
+        System.out.println(c);
+        // String c=a+""+(b);
+        // int d= Integer.parseInt(c);
+        // System.out.println(d);
+        // System.out.println((byte)d);
+    }
 }
+
