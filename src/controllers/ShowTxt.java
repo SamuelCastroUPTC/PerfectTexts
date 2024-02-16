@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.List;
 import java.util.Scanner;
 
 import models.Person;
@@ -62,8 +61,9 @@ public class ShowTxt{
     }
 
     public void showPersonOrganice2(){
-        for(Person2 people: procces.organiceTxtPerson2(getPath())){
-            System.out.println(people.getName()+" "+people.getLastname()+" "+people.getGender()+" "+people.getCode()+" "+people.getWeigth()+" "+people.getSalary());
+        for(Person2 people: procces.organiceTxtPerson2(".\\person2.txt")){
+            System.out.println(people.getCode()+" "+people.getName()+" "+people.getLastname()+" "+people.getGender()+" "+people.getWeigth()+" "+people.getSalary());
         }
     }
+
 }

@@ -139,18 +139,35 @@ public class ProcesTxt {
     }
 
     public String[] separateInformationPerson2 (String line){
-        String[] cont= line.split("\\");
+        String[] cont= line.split("\\\\");
+        System.out.println(cont.length);
         return cont;
     }
 
-    public Person2 fillOutPerson2(String[] cont){
+    public Person2 fillOutPerson2(String[] cont) throws NumberFormatException, IOException{
         Person2 person= new Person2();
         person.setCode(cont[0]);
         person.setLastname(cont[1]);
         person.setName(cont[2]);
         person.setGender(cont[3].charAt(0));
-        person.setWeigth(Integer.valueOf(cont[4]));
-        person.setSalary(Integer.valueOf(cont[5]));
+        person.setWeigth(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimal(cont[4]),16)));
+        person.setSalary(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimal(cont[5]),16)));
         return person;
+    }
+
+    public String convertDecimalaHexadecimal (String cont) throws IOException {
+        ArrayList<Integer> decimal= new ArrayList<Integer>();
+        for (char c : cont.toCharArray()) {
+            decimal.add((int)c);
+        }
+        return changeDecimalHexadecimal(decimal);
+    }
+
+    public String changeDecimalHexadecimal(ArrayList<Integer> decimal){
+        String hexadecimal1="";
+        for (Integer integer : decimal) {
+            hexadecimal1=hexadecimal1+integer.toHexString(integer);
+        }
+        return hexadecimal1;
     }
 }
