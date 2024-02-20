@@ -27,8 +27,8 @@ public class Person2 {
     public void setCode(String code) {
         this.code = code;
     }
-    public char getGender() {
-        return gender;
+    public String getGender() {
+        return String.valueOf(gender);
     }
     public void setGender(char gender) {
         this.gender = gender;

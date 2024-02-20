@@ -185,22 +185,91 @@ public class ProcesTxt {
         // System.out.println((byte)d);
     }
 
-    public void leerArchivo () throws IOException {
+    public ArrayList<Person2> leerArchivo () throws IOException {
     File filePath = new File(".\\person2.txt");
-    // Instance of the FileInputStream
     FileInputStream fileInputStream = new FileInputStream(filePath);
-
-    // Create a byte array
     byte[] demoArray = new byte[(int) filePath.length()];
-
-    // Read file content to byte array
     fileInputStream.read(demoArray);
-
-    // Close the instance
     fileInputStream.close();
+    int cont=0;
+    String name="";
+    String lastname="";
+    String code="";
+    String gender="";
+    String weigth="";
+    String salary="";
+    ArrayList<Person2> people= new ArrayList<Person2>();
+    for (byte b : demoArray) {
+        StringBuilder hexStringBuilder = new StringBuilder();
 
-    // Print the above byte array
-    System.out.println(Arrays.toString(demoArray));
+        if (b==13) {
+            Person2 person= new Person2();
+            person.setCode(hexadecimalToString(code));
+            person.setLastname(hexadecimalToString(lastname));
+            person.setName(hexadecimalToString(name));
+            person.setGender(hexadecimalToChar(gender));
+            person.setWeigth(hexadecimaltoDecimal(weigth));
+            person.setSalary(hexadecimaltoDecimal(salary));
+            people.add(person);
+            cont=0;
+            code="";
+            lastname="";
+            name="";
+            gender="";
+            weigth="";
+            salary="";
+        }else{
+            if(b==10){
+
+            }else{
+                if(b==92){
+                    cont=cont+1;
+                }else{
+                    if (cont==0) {
+                        code=code+hexStringBuilder.append(String.format("%02X", b));
+                    }
+            
+                    if (cont==1) {
+                        name=name+hexStringBuilder.append(String.format("%02X", b));
+                    }
+            
+                    if (cont==2) {
+                        lastname=lastname+hexStringBuilder.append(String.format("%02X", b));
+                    }
+            
+                    if (cont==3) {
+                        gender=gender+hexStringBuilder.append(String.format("%02X", b));
+                    }
+            
+                    if (cont==4) {
+                        weigth=weigth+hexStringBuilder.append(String.format("%02X", b));
+                    }
+            
+                    if (cont==5) {
+                        salary=salary+hexStringBuilder.append(String.format("%02X", b));
+                    }
+                }
+            }
+        }
+        }
+        return people;
+    }
+
+    public String hexadecimalToString(String word){
+        byte[] byteArray = new byte[word.length() / 2];
+        for (int i = 0; i < byteArray.length; i++) {
+            int index = i * 2;
+            int intValue = Integer.parseInt(word.substring(index, index + 2), 16);
+            byteArray[i] = (byte) intValue;
+        }
+        String convertedString = new String(byteArray);
+        return convertedString;
+    }
+
+    public char hexadecimalToChar(String word){
+        int intValue = Integer.parseInt(word, 16);
+        char charValue = (char) intValue;
+        return charValue;
     }
 
     public int stringtoDecimal(String word){

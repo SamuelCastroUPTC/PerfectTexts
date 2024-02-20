@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import models.Person;
@@ -66,8 +67,10 @@ public class ShowTxt{
         }
     }
 
-    public void shoeBytesddd(){
-        procces.twoNumbers();
+    public void showBytesAdd() throws IOException{
+        for (Person2 people : procces.leerArchivo()) {
+            System.out.println(people.getCode()+" "+people.getName()+" "+people.getLastname()+" "+people.getGender()+" "+people.getWeigth()+" "+people.getSalary());
+        }
     }
 
 
