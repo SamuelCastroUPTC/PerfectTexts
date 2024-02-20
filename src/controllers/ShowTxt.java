@@ -68,9 +68,18 @@ public class ShowTxt{
     }
 
     public void showBytesAdd() throws IOException{
-        for (Person2 people : procces.leerArchivo()) {
+        int totalsalary=0;
+        int cont=0;
+        for (Person2 people : procces.organicePerson2P()) {
             System.out.println(people.getCode()+" "+people.getName()+" "+people.getLastname()+" "+people.getGender()+" "+people.getWeigth()+" "+people.getSalary());
+            totalsalary=totalsalary+people.getSalary();
+            cont++;
         }
+        System.out.println("El promedio del salario es: "+totalsalary/cont);
+    }
+
+    public void CreateTxtPerson2() throws IOException{
+        procces.writeFileTxt("Organice Person 2", procces.organiceText(procces.organicePerson2P()), "C:\\Users\\sala L310\\Documents\\Samuel");
     }
 
 

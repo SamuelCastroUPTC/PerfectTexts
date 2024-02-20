@@ -184,7 +184,7 @@ public class ProcesTxt {
         // System.out.println((byte)d);
     }
 
-    public ArrayList<Person2> leerArchivo () throws IOException {
+    public ArrayList<Person2> organicePerson2P () throws IOException {
     File filePath = new File(".\\person2.txt");
     FileInputStream fileInputStream = new FileInputStream(filePath);
     byte[] demoArray = new byte[(int) filePath.length()];
@@ -295,5 +295,32 @@ public class ProcesTxt {
         int decimal= Integer.parseInt(hexadecimal,16);
         return decimal;
     }
+
+    public String organiceText(ArrayList<Person2> people){
+        String organice="";
+        for (Person2 person : people) {
+            organice=organice+plusSpace(""+person.getCode())+plusSpace(person.getLastname())
+            +plusSpace(person.getName())+plusSpace(""+person.getGender())+
+            plusSpace(""+person.getWeigth())+plusSpace(""+person.getSalary())+"\n";
+        }
+        return organice;
+    }
+
+    public String plusSpace(String word){
+        String space=" ";
+        int stop=20;
+        for(int i=0; i<10; i++){
+            if ((((word.substring(0, 1)).compareTo(i+""))==1)||word.length()==1) {
+                    stop=10;
+                    break;
+            }
+        }
+        for(int i=word.length(); i<stop;i++){
+            word=word+space;
+        }
+        
+        return word;
+    }
+
 }
 
