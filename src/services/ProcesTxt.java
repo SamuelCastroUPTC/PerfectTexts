@@ -301,7 +301,7 @@ public class ProcesTxt {
         for (Person2 person : people) {
             organice=organice+plusSpace(""+person.getCode())+plusSpace(person.getLastname())
             +plusSpace(person.getName())+plusSpace(""+person.getGender())+
-            plusSpace(""+person.getWeigth())+plusSpace(""+person.getSalary())+"\n";
+            weigthCivil(person.getWeigth()+"")+plusSpace(""+person.getSalary())+"\n";
         }
         return organice;
     }
@@ -320,6 +320,46 @@ public class ProcesTxt {
         }
         
         return word;
+    }
+
+    public String weigthCivil(String word){
+        String newWord="";
+        String civil="";
+        if(Integer.parseInt(word)%2==0){
+            civil="Soltero";
+        }else{
+            civil="Casado";
+        }
+        newWord=plusSpace(newNumber(newBinary(weigthBinary(word))))+plusSpace(civil);
+        return newWord;
+    }
+
+    public String weigthBinary(String word){
+        int number= Integer.parseInt(word);
+        StringBuilder binaryBuilder = new StringBuilder();
+        while (number > 0) {
+            int remainder = number % 2;
+            binaryBuilder.insert(0, remainder); // Insert the remainder at the beginning
+            number /= 2;
+        }
+
+        String binary = binaryBuilder.toString();
+        return binary;
+    }
+
+    public String newBinary(String binary){
+        String newbinary="0"+binary.substring(0, (binary.length()-1));
+        return newbinary;
+    }
+
+    public String newNumber(String binary){
+        int decimal = 0;
+        for (int i = 0; i < binary.length(); i++) {
+            char digit = binary.charAt(i);
+            int power = binary.length() - 1 - i;
+            decimal += (digit - '0') * Math.pow(2, power);
+        }
+        return decimal+"";
     }
 
 }

@@ -79,7 +79,7 @@ public class ShowTxt{
     }
 
     public void CreateTxtPerson2() throws IOException{
-        procces.writeFileTxt("Organice Person 2", procces.organiceText(procces.organicePerson2P()), "C:\\Users\\sala L310\\Documents\\Samuel");
+        procces.writeFileTxt("Organice Person 2", procces.organiceText(procces.organicePerson2P()), ".");
     }
 
 
