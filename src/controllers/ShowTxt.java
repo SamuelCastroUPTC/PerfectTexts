@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import models.Person;
@@ -69,5 +70,6 @@ public class ShowTxt{
     public void shoeBytesddd(){
         procces.twoNumbers();
     }
+
 
 }

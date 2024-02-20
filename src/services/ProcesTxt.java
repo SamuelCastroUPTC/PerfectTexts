@@ -6,10 +6,12 @@ import models.Person2;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProcesTxt {
@@ -149,8 +151,8 @@ public class ProcesTxt {
         person.setLastname(cont[1]);
         person.setName(cont[2]);
         person.setGender(cont[3].charAt(0));
-        person.setWeigth(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimalInteger(cont[4]),16)));
-        person.setSalary(Integer.valueOf(Integer.parseInt(convertDecimalaHexadecimalInteger(cont[5]),16)));
+        person.setWeigth(stringtoDecimal(cont[4]));
+        person.setSalary(stringtoDecimal(cont[5]));
         return person;
     }
 
@@ -176,11 +178,54 @@ public class ProcesTxt {
         int b=183;
         int c=a*256;
         c=c+b;
-        System.out.println(c);
+        System.out.println((byte)a);
         // String c=a+""+(b);
         // int d= Integer.parseInt(c);
         // System.out.println(d);
         // System.out.println((byte)d);
+    }
+
+    public void leerArchivo () throws IOException {
+    File filePath = new File(".\\person2.txt");
+    // Instance of the FileInputStream
+    FileInputStream fileInputStream = new FileInputStream(filePath);
+
+    // Create a byte array
+    byte[] demoArray = new byte[(int) filePath.length()];
+
+    // Read file content to byte array
+    fileInputStream.read(demoArray);
+
+    // Close the instance
+    fileInputStream.close();
+
+    // Print the above byte array
+    System.out.println(Arrays.toString(demoArray));
+    }
+
+    public int stringtoDecimal(String word){
+        int decimal= stringtoByte(word);
+        return decimal;
+    }
+
+    public int stringtoByte(String word){
+        byte[] arregloBytes=word.getBytes();
+        return bytetoHexadecimal(arregloBytes);
+    }
+
+    public int bytetoHexadecimal(byte[] demoArray){
+        StringBuilder sb= new StringBuilder();
+        String hexadecimal="";
+        for (byte b : demoArray) {
+            hexadecimal=""+sb.append(String.format("%02X", b));
+        }
+        
+        return hexadecimaltoDecimal(hexadecimal);
+    }
+
+    public int hexadecimaltoDecimal(String hexadecimal){
+        int decimal= Integer.parseInt(hexadecimal,16);
+        return decimal;
     }
 }
 
